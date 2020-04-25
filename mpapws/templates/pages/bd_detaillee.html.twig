@@ -1,0 +1,83 @@
+{%  extends 'base.html.twig' %}
+
+{% block body  %}
+    </br>
+    <div class="row justify-content-between align-items-center">
+        {# Zone de gauche #}
+        <div class="column">
+            <img src="{{ BandeDessinee.getAffiche() }}" style="width: 200px;">
+            <p class="ml-2">
+                {% if BandeDessinee.getSesNotes|length != 0%}
+                Note :  {{ BandeDessinee.getNoteMoyenne() }} / 5 sur {{ BandeDessinee.getSesNotes()|length }} notes
+                {% else %}
+                    Aucune note
+                {% endif %}
+            </p>
+            <p> Ajouter une note</p>
+            {{ form_start(formNote) }}
+            <div class="column text-center form-note">
+                {{ form_row(formNote.Valeur) }}
+                {{ form_row(formNote.save) }}
+            </div>
+            {{ form_end(formNote) }}
+
+        </div>
+        {# Zone de droite #}
+        <div class="column mx-auto text-center">
+            <p> AUTEUR {{ BandeDessinee.getAuteur() }} • PARUTION {{ BandeDessinee.getDateDeParution()|date("d/m/Y") }} • THEME {{ BandeDessinee.getGenre() }} {{ BandeDessinee.getSousGenre() }}</p>
+            <h1 class="BD-title"> {{ BandeDessinee.getTitre() }} </h1>
+            <p class="BD-Description"> {{ BandeDessinee.getDescription() }} </p>
+
+        </div>
+
+        <div class="column">
+            <button type="button" class="btn button-download" onclick="window.open('{{ BandeDessinee.getLivrePDF() }}', '_blank')"> Ouvrir la BD</button>
+        </div>
+
+    </div>
+
+    {# Zone des planches #}
+    <div class="card mx-auto div-planche" style="margin-top: 20px;">
+        <ul class="list-group list-group-horizontal-lg d-flex justify-content-around">
+            {% for Planche in Planches %}
+                <li class="list-group-item d-flex justify-content-between align-items-center " style="margin: 5px;">
+                    <img src="{{ Planche }}" class="planche-img">   <!-- planches en fonction des id -->
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    {# Zone des Commentaires #}
+    </br> </br>
+    <div class="detailcomment-separator"> </div>
+    </br>
+    <p> {{ nbCommentaires }} Commentaires</p>
+    </br>
+
+    <section class="comments">
+        <div class="form-comment">
+            {{ form_start(formComment) }}
+                {{ form_row(formComment.Auteur) }}
+                <div class="form-comment2 row  align-items-center">
+                    {{ form_row(formComment.Contenu) }}
+                    {{ form_row(formComment.save) }}
+                </div>
+            {{ form_end(formComment) }}
+        </div>
+
+        </br>
+
+        {% for Commentaire in Commentaires  %}
+        <article class="comment">
+            <div class="comment-body">
+                <div class="text comment-border">
+                    <p class="comment-content"> {{ Commentaire.getContenu() }} </p>
+                </div>
+                <p class="attribution">par {{ Commentaire.getAuteur() }} le {{ Commentaire.getDate() |date("d/m/Y")}} a {{ Commentaire.getDate() |date("H:i:s")}}</p>
+            </div>
+        </article>
+        {% endfor %}
+    </section>
+
+{% endblock %}

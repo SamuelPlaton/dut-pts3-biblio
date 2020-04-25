@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="/style.css">
+        <title>{% block title %}Biblio{% endblock %}</title>
+        {% block stylesheets %} {% endblock %}
+    </head>
+    <body>
+
+    {# Header #}
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top header">
+        <a class="navbar-brand text-light logo-biblio" href="http://mpapws.loc:9999/"><img src="/img/logo-biblio.svg" style="width: 80px;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {% for typeGenre in typesGenre %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ typeGenre }}
+                    </a>
+                    <div class="dropdown-menu header-sousmenu" aria-labelledby="navbarDropdown" >
+                        {% for typeSousGenre in typesSousGenre %}
+                        <a class="dropdown-item text-light" href="{{ path('listeBDSousGenre', {'genre' : typeGenre, 'sousGenre' : typeSousGenre, 'page' : '1', 'tri': 'def' }) }}" >{{ typeSousGenre }}</a>
+                        {% endfor %}
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-light" href="{{ path('listeBDTendances', {'genre' : typeGenre, 'page' : '1', 'tri' : 'def' }) }}">Les tendances </a>
+                        <a class="dropdown-item text-light" href="{{ path('listeBDGenre', {'genre' : typeGenre, 'page' : '1', 'tri': 'def' }) }}">Voir tout </a>
+                    </div>
+                </li>
+                {% endfor %}
+
+            </ul>
+
+            <button type="button" class="btn btn-light" style="margin-right: 30px;" onclick="location.href='{{ path('formulaire') }}'"><p class="bd-ajouter">Ajouter votre BD</p></button>
+            {{ form_start(formSearch) }}
+            <div style="display: flex">
+                <div style="margin-right: 10px">
+                    {{ form_widget(formSearch.query) }}
+                </div>
+                <div>
+                    {{ form_widget(formSearch.rechercher) }}
+                </div>
+            </div>
+            {{ form_end(formSearch) }}
+        </div>
+    </nav>
+
+
+    <div class="container">
+
+        {% block body %}
+        {% endblock %}
+
+    </div>
+
+    </br> </br> </br> </br>
+
+    {# Footer #}
+    <footer id="sticky-footer" class="py-4 text-white-50">
+        <div class="container text-center">
+            <small>Biblio - Le site qui vous donnera envie de BD !</small>
+        </div>
+    </footer>
+
+    {% block javascripts %}{% endblock %}
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>

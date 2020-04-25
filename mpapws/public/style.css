@@ -1,0 +1,419 @@
+html{
+    min-height: 100%; /* Une page prend au moins 100% de la place, sert à fixer le footer en bas */
+    position: relative;
+}
+
+/* --------------------- HEADER  ----------------------*/
+
+.header{ /* Fond du header */
+    background-color: #23374D;
+}
+
+.header-sousmenu{ /* Fond du sous menu du header */
+    background-color: #23374D;
+}
+
+.logo-biblio{ /* Logo du header */
+    transition: 0.3s;
+}
+
+.logo-biblio:hover{ /* Logo du header lorsque l'on passe le curseur dessus */
+    opacity: 80%;
+    transition: 0.3s;
+}
+#search-button:hover #search-icon { /* Loupe de recherche */
+    filter: invert(100%); /* Rend la loupe noir au :hover du bouton */
+}
+
+    /* Transition sur les hover des sous genre */
+.dropdown-item{
+    transition: 0.3s;
+}
+
+
+.dropdown-item:hover{
+    background-color: white;
+    transition: 0.3s;
+}
+
+/* Bouton ajouter une BD */
+
+p.bd-ajouter{
+    margin: 0;
+}
+
+button.btn.btn-light:hover{
+    color: #1089FF;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+button.btn.btn-light{
+    color: black;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+
+/* ----------------------------------------------------------*/
+
+
+
+
+
+/* ---------------------- PAGINATION -------------------------*/
+
+.pagination-part{ /* Chaque partie de la pagination '<' '1' '2' '3' etc... */
+    color: #1089FF;
+    margin-left: 10px;
+}
+
+.pagination-part:hover{ /* Chaque partie de la pagination '<' '1' '2' '3' etc... */
+}
+
+.pagination-arrows{ /* Flèches de la pagination '<<' '<' '>' '>>' */
+
+}
+
+.pagination-active .pagination-part{ /* Page active de la pagination ex: '1' si nous sommes à la page 1 */
+    font-weight: bold;
+    color: black;
+}
+.pagination-active .pagination-part:hover{
+    text-decoration: none;
+}
+
+
+/* ----------------------------------------------------------*/
+
+
+
+
+
+
+/* --------------------- FOOTER  ----------------------*/
+
+/* Colle le footer en bas de page */
+#sticky-footer{
+    background-color: #23374D;
+    margin-top: auto;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+/* ----------------------------------------------------------*/
+
+/*------------------------HOME BD TENDANCES -------------------*/
+
+.home-title{ /* Titre de la page */
+    margin: 20px;
+}
+
+
+.tendance-zone{ /* Zone des BD tendances */
+    margin: 20px;
+}
+
+
+.bdtendance-title{ /* Titre de chaque BD tendance */
+    width: 150px;
+    font-weight: bold;
+}
+
+.bdtendance-title-link{ /* Lien de chaque BD tendance */
+    text-decoration: none;
+    color: black;
+    transition: 0.2s;
+}
+
+.bdtendance-title-link:hover{ /* Lien de chaque BD tendance lorsque l'on passe le curseur dessus */
+    text-decoration: none;
+    color : #1089FF;
+    transition: 0.2s;
+}
+
+.bdtendance-author{ /* Nom de l'auteur de chaque BD tendance */
+    margin-top: -20px;
+}
+
+
+.bdtendance-voirplus{ /* Bouton voir plus de chaque section de BD tendance */
+    background-color: white;
+    color: #1089FF;
+    border : solid 1px #1089FF;
+    margin-top: 80px;
+    transition: 0.5s;
+}
+
+.bdtendance-voirplus:hover { /* Bouton voir plus de chaque section de BD tendance lorsque l'on passe le curseur dessus */
+    background-color: #1089FF;
+    color: white;
+    transition: 0.5s;
+}
+
+.sous-genre{
+    background-color: #1089FF;
+    color: white;
+    border : solid 1px #1089FF;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.tendance-zone{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.la-BD-tendance{ /* La BD Tendance */
+    margin: 1.47em;
+    width: 150px; /* Limite la taille d'une BD si il y en a moins de 5 */
+}
+
+.bdtendance-affiche{ /* L'affiche de la BD tendance */
+    height: 200px;
+    width: 100%;
+}
+
+.bdtendance-voirplus{ /* Bouton voir plus */
+    margin: 0;
+    padding-left: 2em;
+    padding-right: 2em;
+    margin-bottom: 13em;
+    margin-top: 7em;
+    transition: 0.5s;
+}
+
+/* ----------------------------------------------------------*/
+
+
+
+
+
+/*----------------------- LISTE DES BD ----------------------*/
+
+.BDlist-link{ /* Liens de chaque BD dans les listes */
+    text-decoration: none;
+    transition: 0.3s;
+    color : #23374D;
+}
+
+.BDlist-link:hover{ /* Liens de chaque BD dans les listes lorsque l'on passe le curseur dessus*/
+    text-decoration: none;
+    transition: 0.3s;
+    color : #1089FF;
+}
+
+
+
+/* ---- Aucun Résultat ---- */
+
+.noresult-title{ /* Titre de la section aucun résultat */
+    font-family: 'Acme', sans-serif;
+    color : #1089FF;
+}
+
+.noresult-home{ /* Bouton de retour de la section aucun résultat */
+    text-decoration: none;
+    font-style: normal;
+    color: black;
+    transition: 0.2s;
+}
+
+.return-home:hover{ /* Bouton de retour de la section aucun résultat lorsque l'on passe le curseur dessus */
+    color : #1089FF;
+    transition: 0.2s;
+}
+
+
+/*------------------------------------------------------------*/
+
+
+
+
+/* --------------------- PAGE D'UNE BD ----------------------*/
+
+/* Affichage des infos de la BD */
+
+.BD-Description{ /* Description d'une BD */
+    width: 500px;
+}
+
+.BD-title{ /* Titre d'une BD */
+    width: 500px;
+}
+
+/* Ajouter une note */
+
+.form-note .required{ /* Fait disparaître les label */
+    display: none;
+}
+/* Bouton download */
+.button-download {
+    background-color: #1089FF;
+    color: white;
+    transition: 0.5s;
+}
+
+.button-download:hover { /* Lorsque l'on passe le curseur dessus */
+    background-color: white;
+    color: #1089FF;
+    border : solid 1px #1089FF;
+    transition: 0.5s;
+}
+/* Section planche */
+
+.div-planche{ /* Div contenant toutes les planches */
+    border: none;
+}
+
+.planche-img{ /* Images individuelles sur chaque planche */
+    width: 200px;
+    transition: 0.3s;
+}
+.planche-img:hover{ /* Zoom sur une image individuelle lorsque l'on passe le curseur dessus */
+    width: 300px;
+    transition: 0.3s;
+}
+
+
+
+.detailcomment-separator{ /* Ligne séparant la BD des commentaires */
+    border-bottom: solid #E5E5E5 2px;
+}
+
+/* Ajouter un commentaire */
+
+.form-comment .required{ /* Fait disparaître les label */
+    display: none;
+}
+
+.form-comment2{ /* Décale vers la droite le contenu commentaire et le bouton */
+    margin-left: 0.5px;
+}
+
+.form-comment2 .btn{ /* Décale vers la droite le bouton */
+    margin-left: 20px;
+}
+
+
+/* Diminue la largeur des input auteur et contenu */
+
+#form_Auteur{
+    width: 200px;
+}
+
+#form_Contenu{
+    width: 400px;
+    height: 80px;
+}
+
+/* Section commentaire */
+
+.comment-content{ /* Contenu des commentaires */
+    margin: 0 0 1em;
+    word-wrap: break-word;
+}
+
+.comment { /* Tout le commentaire */
+    overflow: hidden;
+    padding: 0 0 1em;
+    margin: 0 0 1em;
+    *zoom: 1;
+}
+
+.comment-body { /* Corps du commentaire */
+    overflow: hidden;
+}
+
+.comment .text {
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    background: #fff;
+    transition: 0.3s;
+}
+
+.comment-border:hover{ /* Changement de couleur des bordures de commentaire lorsque l'on passe le curseur dessus */
+    border: solid 1px #1089FF;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+
+.comment .attribution {
+    margin: 0.5em 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Decoration */
+
+.comments,
+.comment {
+    position: relative;
+}
+
+.comments:before,
+.comment:before,
+.comment .text:before {
+    position: absolute;
+    top: 0;
+    left: 65px;
+}
+
+.comments:before {
+    width: 3px;
+    top: -20px;
+    bottom: -20px;
+    background: rgba(0,0,0,0.1);
+}
+
+.comment:before {
+    width: 9px;
+    height: 9px;
+    border: 3px solid #fff;
+    border-radius: 100px;
+    margin: 16px 0 0 -6px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.2), inset 0 1px 1px rgba(0,0,0,0.1);
+    background: #ccc;
+}
+
+.comment:hover:before {
+    background: orange;
+}
+
+
+.comment .text:before {
+    top: 18px;
+    left: 78px;
+    width: 9px;
+    height: 9px;
+    border-width: 0 0 1px 1px;
+    border-style: solid;
+    border-color: #e5e5e5;
+    background: #fff;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+ }
+
+
+/* ----------------------------------------------------------*/
+
+
+
+/*------------------------FORMULAIRE AJOUTER BD-------------------*/
+
+
+.custom-file-label::after{
+    content: "Sélectionner votre BD";
+}
+
+input#form_description.form-control{
+    height: 10em;
+}
+

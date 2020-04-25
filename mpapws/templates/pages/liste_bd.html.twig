@@ -1,0 +1,70 @@
+{%  extends 'base.html.twig' %}
+
+{% block body  %}
+
+        <br/>
+        <h3 class="text-center liste-title"> Vous consultez la liste des {{ GenreToString }} ({{ nbResultats }} résultats trouvés)</h3>
+        <br/>
+
+            <button type="button" onclick="window.location.href='{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': '1', 'tri' : "new"  })) }}'" class="btn btn-primary">Les plus récents</button>
+            <button type="button" onclick="window.location.href='{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': '1', 'tri' : "old"  })) }}'" class="btn btn-primary">Les plus anciens</button>
+            <button type="button" onclick="window.location.href='{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': '1', 'tri' : "pos"  })) }}'" class="btn btn-primary">Le vote du public</button>
+
+    <ul class="list-unstyled">
+        {% set i = 0 %}
+        {% for BandeDessinee in BandeDessinees  %}
+
+            <li class="media my-4">
+                <a href="{{ path('BDDetaillee', {'id' : BandeDessinee.getId(), 'genre' : BandeDessinee.getGenre() }) }}"> <img src="{{ BandeDessinee.getAffiche() }}" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
+                <div class="media-body">
+                    <a href="{{ path('BDDetaillee', {'id' : BandeDessinee.getId(), 'genre' : BandeDessinee.getGenre() }) }}" class="BDlist-link"><h5 class="mt-0 mb-1">{{ BandeDessinee.getTitre() }}</h5></a>
+                    <p class="font-weight-bold">{{ BandeDessinee.getDateDeParution()|date("d/m/Y") }} •
+
+                        {% if BandeDessinee.getSesNotes()|length != 0 %}
+                            {{ BandeDessinee.getNoteMoyenne() }} / 5</p>
+                        {% else  %}
+                            Aucune note</p>
+                        {% endif %}
+
+                    <p>{{ BandeDessinee.getDescription() }}</p>
+                </div>
+            </li>
+
+        {% endfor %}
+    </ul>
+
+    {# Ajout d'une zone de pagination pour les pages si besoin est#}
+    {# 3 Types de redirection selon si c'est une liste Tendance, Sous-Genre ou Genre #}
+    {% if pagination.nbPages is defined and pagination.nbPages > 1 and (( BandeDessinees is defined and BandeDessinees is not empty ) or ( BDTendances is defined and BDTendances is not empty )) %}
+        <ul class="pagination justify-content-center">
+            {% if pagination.page > 1 %}
+                <li>
+                    <a href="{{ path(pagination.nomRoute,
+                        pagination.paramsRoute|merge({'page': pagination.page-1 })) }}" class="pagination-part pagination-arrow">
+                        <img src="/img/back_pagination.png" alt="flèche retour">
+                    </a>
+                </li>
+            {% endif %}
+
+            {# Affichage de toutes les pages entre p-4 et p+4 sauf si < 1 ou > nbPages #}
+            {% for p in range(max(pagination.page-4, 1), min(pagination.page+4, pagination.nbPages)) %}
+                <li {% if p == pagination.page %}class="pagination-active"{% endif %}>
+                    <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': p})) }}" class="pagination-part">
+                        {{ p }}
+                    </a>
+                </li>
+            {% endfor %}
+
+            {% if pagination.page < pagination.nbPages %}
+                <li>
+                    <a href="{{ path(pagination.nomRoute,
+                        pagination.paramsRoute|merge({'page': pagination.page+1})) }}" class="pagination-part pagination-arrow">
+                        <img src="/img/next_pagination.png" alt="flèche suivant">
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+
+
+{% endblock %}
